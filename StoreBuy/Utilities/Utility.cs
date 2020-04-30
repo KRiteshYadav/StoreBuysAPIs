@@ -20,7 +20,7 @@ namespace StoreBuy.Utilities
                 mail.To.Add(Resources.ToMailAddress);
                 mail.Subject = Subject;
                 mail.Body = Body;
-                SmtpServer.Port = 587;
+                SmtpServer.Port = Int32.Parse(Resources.SMTPPort);
                 SmtpServer.Credentials = new System.Net.NetworkCredential(Resources.FromMailAddress, Resources.MailPassword);
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
