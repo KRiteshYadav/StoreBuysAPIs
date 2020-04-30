@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+   xmlns="urn:nhibernate-mapping-2.2"
+   auto-import ="true"
+   assembly="StoreBuy"
+   namespace="StoreBuy.Domain">
+
+
+  <class name="StoreItemCatalogue" table="StoreItemCatalogue" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="Id" column="Id" type="long">
+      <generator class="native" />
+    </id>
+    <property name="StoreItemId"  />
+    <property name="StoreItemName"  />
+    <property name="StoreItemPrice"  />
+    <many-to-one
+      name="StoreItemCategory" column="StoreItemCategoryId" />
+    <many-to-one
+      name="Store" column="StoreId" />
+  </class>
+
+</hibernate-mapping>

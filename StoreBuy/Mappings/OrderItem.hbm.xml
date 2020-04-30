@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+   xmlns="urn:nhibernate-mapping-2.2"
+   auto-import ="true"
+   assembly="StoreBuy"
+   namespace="StoreBuy.Domain">
+
+  <class name="OrderItem" table="OrderItem" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="OrderItemId" column="OrderItemId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="Quantity"  />
+    <many-to-one
+      name="Item" column="ItemId" />
+    <many-to-one
+        name="Order" column="OrderId" />
+
+  </class>
+</hibernate-mapping>

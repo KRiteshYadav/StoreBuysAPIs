@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+   xmlns="urn:nhibernate-mapping-2.2"
+   auto-import ="true"
+   assembly="StoreBuy"
+   namespace="StoreBuy.Domain">
+
+  <class name="Users" table="Users" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="UserName" column="UserName" type="string">
+      <!--<generator class="identity" />-->
+    </id>
+    <!--<property name="UserName"  />-->
+    <property name="FirstName"  />
+    <property name="LastName"  />
+    <property name="UserPassword"  />
+    <property name="Email"  />
+    <property name="Phone"  />
+
+  </class>
+
+  <class name="ItemCatalogue" table="ItemCatalogue" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="ItemId" column="ItemId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="ItemName"  />
+    <property name="ItemDescription"/>
+    <property name="EstimatedPrice"  />
+    <many-to-one
+      name="ItemCategory" column="ItemCategoryId" />
+  </class>
+
+
+
+  <class name="ItemCategory" table="ItemCategory" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="CategoryId" column="CategoryId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="CategoryName"  />
+  </class>
+
+
+  <class name="Cart" table="Cart" dynamic-update="true" >
+    <cache usage="read-write"/>
+    
+    <id name="CartId" column="CartId" type="long">
+      <generator class="native" />
+
+    </id>
+    <property name="Quantity"  />
+    <many-to-one
+      name="ItemCatalogue" column="CartItemId" />
+    <many-to-one
+      name="User" column="UserId" />
+  </class>
+
+  <!--<class name="Store" table="StoreA" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="StoreItemId" column="StoreItemId" type="long">
+      <generator class="native" />
+
+    </id>
+    <property name="StoreItemName"  />
+    <property name="StoreItemPrice"  />
+    <property name="StoreItemCategoryId" />
+  </class>-->
+
+
+  <class name="OrderItem" table="OrderItem" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="OrderItemId" column="OrderItemId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="Quantity"  />
+    <many-to-one
+      name="Item" column="ItemId" />
+    <many-to-one
+        name="Order" column="OrderId" />
+
+  </class>
+
+
+  <class name="Orders" table="Orders" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="OrderId" column="OrderId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="SlotDate"  />
+    <property name="SlotTime"  />
+    <many-to-one
+      name="User" column="UserId" />
+    <many-to-one
+        name="Store" column="StoreId" />
+
+  </class>
+
+  <class name="StoreInfo" table="StoreInfo" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="StoreId" column="StoreId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="StoreName"  />
+    <property name="Phone"  />
+    <many-to-one
+        name="StoreLocation" column="LocationId" />
+  </class>
+
+  <class name="Location" table="Location" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="LocationId" column="LocationId" type="long">
+      <generator class="native" />
+    </id>
+    <property name="Latitude"  />
+    <property name="Longitude"  />
+  </class>
+
+  <!--<class name="StoreFilledSlot" table="StoreFilledSlot" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="SlotId" column="SlotId" type="long"></id>
+    <property name="SlotDate"  />
+    <property name="SlotTime"  />
+  </class>-->
+</hibernate-mapping>

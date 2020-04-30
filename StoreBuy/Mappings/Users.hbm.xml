@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+   xmlns="urn:nhibernate-mapping-2.2"
+   auto-import ="true"
+   assembly="StoreBuy"
+   namespace="StoreBuy.Domain">
+
+  <class name="Users" table="Users" dynamic-update="true" >
+    <cache usage="read-write"/>
+    <id name="UserId" column="UserId" type="long">
+      <generator class="identity" />
+    </id>
+    
+    <property name="FirstName"  />
+    <property name="LastName"  />
+    <property name="UserPassword"  />
+    <property name="Email"  />
+    <property name="Phone"  />
+
+  </class>
+</hibernate-mapping>
